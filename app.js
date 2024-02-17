@@ -1,8 +1,15 @@
+// external import
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const path = require("path");
 const cookieParser = require("cookie-parser");
+
+// internal import
+const {
+  notFoundHandler,
+  errorHandler,
+} = require("./middlewares/common/errorHandlers");
 
 const app = express();
 dotenv.config();
@@ -11,7 +18,7 @@ dotenv.config();
 mongoose
   .connect(process.env.MONGO_URL)
   .then(console.log("Database Connnection successful."))
-  .catch(console.error("Database Connnection failed."));
+  .catch((err) => console.error("Database Connection failed.", err));
 
 // Request Persers
 app.use(express.json());
@@ -28,7 +35,11 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Route Setup
 
-// Error Handeling
+// 404 Found Handler
+app.use(notFoundHandler);
+
+// Common Error Handler
+app.use(errorHandler);
 
 app.get("/", (req, res) => {
   res.json("Req is comming");
