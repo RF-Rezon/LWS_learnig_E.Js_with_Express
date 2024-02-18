@@ -4,6 +4,9 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const path = require("path");
 const cookieParser = require("cookie-parser");
+const loginRouter = require("./router/loginRouter");
+const usersRouter = require("./router/usersRouter");
+const inboxRouter = require("./router/inboxRouter");
 
 // internal import
 const {
@@ -34,6 +37,9 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 // Route Setup
+app.use("/", loginRouter);
+app.use("/users", usersRouter);
+app.use("/inbox", inboxRouter);
 
 // 404 Found Handler
 app.use(notFoundHandler);
@@ -41,9 +47,9 @@ app.use(notFoundHandler);
 // Common Error Handler
 app.use(errorHandler);
 
-app.get("/", (req, res) => {
-  res.json("Req is comming");
-});
+// app.get("/", (req, res) => {
+//   res.json("Req is comming");
+// });
 
 // Porting
 app.listen(process.env.PORT, () => {
