@@ -1,5 +1,7 @@
-const { check } = require("express-validator");
+const { check, validationResult } = require("express-validator");
 const createError = require("http-errors");
+const { unlink } = require("fs");
+const { path } = require("path");
 
 const User = require("../../models/People");
 
@@ -46,4 +48,29 @@ const addUsersValidatior = [
     ),
 ];
 
-module.exports = { addUsersValidatior };
+const addUsersValidatiorHandler = (req, res, next) => {
+  const errors = validationResult(req);
+  const mappedErrors = errors.mapped();
+
+  if (Object.keys(mappedErrors).length === 0) {
+    next();
+  } else {
+    // first delete the uploaded file (junk file)
+
+    if (req.files.length > 0) {
+      const { filename } = req.files[0];
+      unlink(
+        path.join(__dirname, `/../public/uploads/avatars/${filename}`),
+        (err) => {
+          if (err) console.error(err);
+        }
+      );
+    }
+
+    res.status(500).json({
+      errors: mappedErrors,
+    });
+  }
+};
+
+module.exports = { addUsersValidatior, addUsersValidatiorHandler };
