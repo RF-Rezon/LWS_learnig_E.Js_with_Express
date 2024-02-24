@@ -3,7 +3,7 @@ const createError = require("http-errors");
 const path = require("path");
 
 uploder = (subfolder_path, image_type, image_size, error_msg) => {
-  const UPLOADS_FOLDER = `${__dirname}/../public/uploads/avatars/${subfolder_path}/`;
+  const UPLOADS_FOLDER = `${__dirname}/../public/uploads/${subfolder_path}/`;
 
   // Multer define storage
   const storage = multer.diskStorage({

@@ -2,7 +2,7 @@ const uploder = require("../../utils/singleUpload");
 
 const avatarUploads = (req, res, next) => {
   const upload = uploder(
-    "avaters",
+    "avatars",
     ["image/jpg", "image/png", "image/jpeg"],
     1000000,
     "Only jpg, jpeg and png formet supported."
