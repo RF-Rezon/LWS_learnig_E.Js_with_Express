@@ -2,7 +2,11 @@
 const express = require("express");
 
 // Enternal Import
-const { getallUsers, addUser } = require("./../controller/usersController");
+const {
+  getallUsers,
+  addUser,
+  removeUser,
+} = require("./../controller/usersController");
 const decoratehtmlresponse = require("../middlewares/common/decoratehtmlresponse");
 const avatarUploads = require("./../middlewares/users/avatarUploads");
 const {
@@ -23,5 +27,8 @@ router.post(
   addUsersValidatiorHandler,
   addUser
 );
+
+// remove user
+router.delete("/:id", removeUser);
 
 module.exports = router;

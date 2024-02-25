@@ -25,7 +25,7 @@
     oldestFirst: true,
     text: "Toastify is awesome!",
     node: undefined,
-    duration: 3000,
+    duration: 4000,
     selector: undefined,
     callback: function () {},
     destination: undefined,
