@@ -2,7 +2,7 @@
 const express = require("express");
 
 // Enternal Import
-const { getUsers , addUser } = require("./../controller/usersController");
+const { getallUsers, addUser } = require("./../controller/usersController");
 const decoratehtmlresponse = require("../middlewares/common/decoratehtmlresponse");
 const avatarUploads = require("./../middlewares/users/avatarUploads");
 const {
@@ -13,9 +13,15 @@ const {
 const router = express.Router();
 
 // Users Page
-router.get("/", decoratehtmlresponse("Users Page"), getUsers);
+router.get("/", decoratehtmlresponse("Users Page"), getallUsers);
 
 // Add user
-router.post("/", avatarUploads, addUsersValidatior, addUsersValidatiorHandler, addUser);
+router.post(
+  "/",
+  avatarUploads,
+  addUsersValidatior,
+  addUsersValidatiorHandler,
+  addUser
+);
 
 module.exports = router;

@@ -18,16 +18,29 @@
             </tr>
           </thead>
           <tbody id="users-table">
-            <tr id="">
-              <td class="name">
-                <img src="./images/user1.png" />
-                <span>User 1</span>
-              </td>
-              <td>email@email.com</td>
-              <td class="manage">
-                <img src="./images/trash.png" alt="Delete" />
-              </td>
-            </tr>
+            <% users.forEach(function(each) {
+              %>
+              <tr id="">
+                <td class="name">
+                  <% 
+                  if (each.avatar) { %>
+                    <img src="./uploads/avatars/<%= each.avatar %>" />
+                    <%
+                  } else {
+                    %>
+                    <img src="./images/nophoto.png">
+                    <%
+                  }
+                  %>
+                  <span><%= each.name %></span>
+                </td>
+                <td><%= each.email %></td>
+                <td class="manage">
+                  <img src="./images/trash.png" alt="Delete" />
+                </td>
+              </tr>
+              <%
+            }); %>
           </tbody>
         </table>
       </div>

@@ -69,6 +69,7 @@
 
     // prepare the form data
     const formData = new FormData(form);
+    console.log(formData);
 
     // send the request to server
     let response = await fetch("/users", {
