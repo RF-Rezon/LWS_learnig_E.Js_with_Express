@@ -8,6 +8,7 @@ const {
   doLoginValidator,
   doLoginValidatorHandler,
 } = require("../middlewares/login/loginValidatior");
+const { redirectLoggedIn } = require("./../middlewares/common/checklogin");
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ const page_title = "Login Page";
 
 // Login Page
 
-router.get("/", decoratehtmlresponse(page_title), getLogin);
+router.get("/", redirectLoggedIn, decoratehtmlresponse(page_title), getLogin);
 
 router.post(
   "/",

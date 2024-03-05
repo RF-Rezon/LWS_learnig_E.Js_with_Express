@@ -39,4 +39,15 @@ const checklogin = (req, res, next) => {
   }
 };
 
-module.exports = checklogin;
+const redirectLoggedIn = function (req, res, next) {
+  const cookies =
+    Object.keys(req.signedCookies).length > 0 ? req.signedCookies : null;
+
+  if (!cookies) {
+    next();
+  } else {
+    res.redirect("/inbox");
+  }
+};
+
+module.exports = { checklogin, redirectLoggedIn };

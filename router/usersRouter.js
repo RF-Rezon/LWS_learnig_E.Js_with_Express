@@ -9,7 +9,7 @@ const {
 } = require("./../controller/usersController");
 const decoratehtmlresponse = require("../middlewares/common/decoratehtmlresponse");
 const avatarUploads = require("./../middlewares/users/avatarUploads");
-const checklogin = require("./../middlewares/common/checklogin");
+const { checklogin } = require("./../middlewares/common/checklogin");
 const {
   addUsersValidatior,
   addUsersValidatiorHandler,
