@@ -48,9 +48,9 @@ async function login(req, res, next) {
     }
   } catch (err) {
     res.render("index", {
-      data: {
-        username: req.body.username,
-      },
+      // data: {
+      //   username: req.body.username,
+      // },
       errors: {
         common: {
           msg: err.message,
@@ -60,4 +60,10 @@ async function login(req, res, next) {
   }
 }
 
-module.exports = { getLogin, login };
+// logout
+function logout(req, res) {
+  res.clearCookie(process.env.COOKIE_NAME);
+  res.send("logged out");
+}
+
+module.exports = { getLogin, login, logout };
