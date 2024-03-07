@@ -10,3 +10,7 @@
 - Multer for file upload. *
 
 # * = New learned
+
+# Playlist: https://www.youtube.com/playlist?list=PLHiZ4m8vCp9PHnOIT7gd30PCBoYCpGoQM
+- Learned before Realtime chat and websoket. (Video 4/6).
+
